@@ -1,7 +1,7 @@
 {{- if .Values.defaultBackend.enabled }}
-{{- if eq .Values.defaultBackend.kind "Deployment" }}
+{{- if eq .Values.defaultBackend.kind "DaemonSet" }}
 apiVersion: extensions/v1beta1
-kind: Deployment
+kind: DaemonSet
 metadata:
   labels:
     app: {{ template "nginx-ingress.name" . }}
@@ -11,7 +11,6 @@ metadata:
     release: {{ .Release.Name }}
   name: {{ template "nginx-ingress.defaultBackend.fullname" . }}
 spec:
-  replicas: {{ .Values.defaultBackend.replicaCount }}
   revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
   template:
     metadata:

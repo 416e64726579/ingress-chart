@@ -17,7 +17,10 @@ controller:
     https: 443
 
   # Will add custom configuration options to Nginx https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/
-  config: {}
+  config:
+    forwarded-for-header: X-REAL-IP
+    set-real-ip-from: 172.17.0.0/16
+    use-forwarded-headers: "true"
 
   # Will add custom headers before sending traffic to backends according to https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/customization/custom-headers
   proxySetHeaders: {}
@@ -116,7 +119,7 @@ controller:
 
   ## DaemonSet or Deployment
   ##
-  kind: Deployment
+  kind: DaemonSet
 
   # The update strategy to apply to the Deployment or DaemonSet
   ##
@@ -415,7 +418,6 @@ controller:
     tarantool:
       service:
         annotations: {}
-      replicaCount: 1
       arena: "0.2"
       livenessProbe:
         failureThreshold: 3
@@ -424,6 +426,8 @@ controller:
         successThreshold: 1
         timeoutSeconds: 1
       resources: {}
+      # replicaCount: 1
+      kind: DaemonSet
     metrics:
       enabled: false
 
@@ -468,6 +472,8 @@ defaultBackend:
     runAsUser: 65534
 
   extraArgs: {}
+
+  kind: DaemonSet
 
   serviceAccount:
 #    create: true
