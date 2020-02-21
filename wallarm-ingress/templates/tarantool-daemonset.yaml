@@ -1,6 +1,6 @@
 {{- if .Values.controller.wallarm.enabled }}
 {{- if eq .Values.controller.wallarm.tarantool.kind "DaemonSet" }}
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   labels:
@@ -11,6 +11,9 @@ metadata:
     release: {{ .Release.Name }}
   name: {{ template "nginx-ingress.controller.fullname" . }}-wallarm-tarantool
 spec:
+  selector:
+    matchLabels:
+      app: {{ template "nginx-ingress.name" . }}
   template:
     metadata:
       labels:

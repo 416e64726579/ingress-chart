@@ -1,6 +1,6 @@
 {{- if eq .Values.controller.kind "Deployment" }}
 {{- if .Values.controller.autoscaling.enabled }}
-apiVersion: autoscaling/v2beta1
+apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   labels:

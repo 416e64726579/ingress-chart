@@ -435,7 +435,7 @@ controller:
         annotations:
           prometheus.io/scrape: "true"
           prometheus.io/path: /wallarm-metrics
-          prometheus.io/port: "18080"
+          prometheus.io/port: "10246"
 
         ## List of IP addresses at which the stats-exporter service is available
         ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips

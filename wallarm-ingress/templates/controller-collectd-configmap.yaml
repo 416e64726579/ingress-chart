@@ -29,7 +29,7 @@ data:
     </Plugin>
 
     <Plugin curl_json>
-      <URL "http://127.0.0.1:18080/wallarm-status?id=1">
+      <URL "http://127.0.0.1:10246/wallarm-status?id=1">
         Instance "wallarm_nginx"
         <Key "requests">
           Type gauge
@@ -86,7 +86,7 @@ data:
           Type gauge
         </Key>
       </URL>
-      <URL "http://127.0.0.1:18080/wallarm-status?id=2">
+      <URL "http://127.0.0.1:10246/wallarm-status?id=2">
         Instance "wallarm_nginx"
         <Key "requests">
           Type derive
