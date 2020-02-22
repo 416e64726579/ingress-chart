@@ -18,7 +18,7 @@ controller:
 
   # Will add custom configuration options to Nginx https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/
   config:
-    forwarded-for-header: X-REAL-IP
+    # forwarded-for-header: X-REAL-IP
     set-real-ip-from: 172.17.0.0/16
     use-forwarded-headers: "true"
 
@@ -119,7 +119,7 @@ controller:
 
   ## DaemonSet or Deployment
   ##
-  kind: DaemonSet
+  kind: Deployment
 
   # The update strategy to apply to the Deployment or DaemonSet
   ##
@@ -426,8 +426,8 @@ controller:
         successThreshold: 1
         timeoutSeconds: 1
       resources: {}
-      # replicaCount: 1
-      kind: DaemonSet
+      replicaCount: 1
+      kind: Deployment
     metrics:
       enabled: false
 
@@ -473,7 +473,7 @@ defaultBackend:
 
   extraArgs: {}
 
-  kind: DaemonSet
+  kind: Deployment
 
   serviceAccount:
 #    create: true
@@ -545,7 +545,8 @@ defaultBackend:
   service:
     annotations: {}
     omitClusterIP: false
-    clusterIP: ""
+    # clusterIP: ""
+    clusterIP: None
 
     ## List of IP addresses at which the default backend service is available
     ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
